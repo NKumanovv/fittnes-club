@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Iansui&display=swap');
+
+body {
+    font-family: "Iansui", cursive;
+    line-height: 1.8;
+    color: #222;
+}
+
+h1 {
+    font-size: 2.5em;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 2em;
+    font-weight: 700;
+}
+
+p {
+    font-size: 1.1em;
+}
