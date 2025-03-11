@@ -4,12 +4,18 @@ import com.fitness_club.fitnessPlan.model.FitnessPlan;
 import com.fitness_club.meal.model.Meal;
 import com.fitness_club.medal.model.Medal;
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Builder
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class User {
 
