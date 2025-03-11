@@ -15,6 +15,7 @@ public class Medal {
 
     @Column(nullable = false)
     private String title;
+
     @Column(nullable = false)
     private String description;
 
