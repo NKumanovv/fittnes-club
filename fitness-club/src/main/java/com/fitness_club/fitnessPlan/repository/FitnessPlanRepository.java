@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface fitnessPlanRepository  extends JpaRepository<FitnessPlan, UUID> {
+public interface FitnessPlanRepository extends JpaRepository<FitnessPlan, UUID> {
 
 
 }
