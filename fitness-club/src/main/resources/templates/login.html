@@ -8,7 +8,7 @@
 
 <form class="form" th:action="@{/login}" th:method="POST" th:object="${loginRequest}">
 
-    <h3>Login Here</h3>
+    <h3>Log In</h3>
 
     <label for="username">Username</label>
     <input type="text" placeholder="Username" id="username" th:field="*{username}" required>
@@ -19,7 +19,7 @@
 
     <button type="submit">Log In</button>
 
-    <p class="form-already">Don't have an account? <a href="/register">Register now</a>!</p>
+    <p class="form-already">Don't have an account? <a th:href="@{/register}">Sign Up</a>!</p>
 
 </form>
 

@@ -1,6 +1,7 @@
 package com.fitness_club.web;
 
 import com.fitness_club.web.dto.LoginRequest;
+import com.fitness_club.web.dto.RegisterRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +26,16 @@ public class IndexController {
         if (errorParam != null) {
             modelAndView.addObject("errorMessage", "Incorrect username or password!");
         }
+
+        return modelAndView;
+    }
+
+    @GetMapping("/register")
+    public ModelAndView getRegisterPage() {
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("register");
+        modelAndView.addObject("registerRequest", new RegisterRequest());
 
         return modelAndView;
     }
