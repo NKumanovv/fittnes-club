@@ -12,7 +12,6 @@
     <label for="username">Username</label>
     <input type="text" placeholder="Username" id="username" th:field="*{username}" required>
     <p class="alert-warning" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
-    <p class="alert-warning" th:text="${usernameAlreadyExistMessage}"></p>
 
     <label for="email">Email</label>
     <input type="email" placeholder="Email" id="email" th:field="*{email}" required>
@@ -21,6 +20,25 @@
     <label for="password">Password</label>
     <input type="password" placeholder="Password" id="password" th:field="*{password}" required>
     <p class="alert-warning" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+
+
+    <label for="age">Age</label>
+    <input type="number"  placeholder="Age" id="age" th:field="*{age}" required>
+    <p class="alert-warning" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></p>
+
+    <label for="height">Height</label>
+    <input type="number" placeholder="Height(cm)" id="height" th:field="*{height}" required>
+    <p class="alert-warning" th:if="${#fields.hasErrors('height')}" th:errors="*{height}"></p>
+
+    <label for="weight">Weight</label>
+    <input type="number" placeholder="Weight(kg)" id="weight" th:field="*{weight}" required>
+    <p class="alert-warning" th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></p>
+
+    <label for="gender">Gender</label>
+    <select id="gender" th:field="*{gender}">
+        <option th:each="gender : ${T(com.fitness_club.user.model.Gender).values()}" th:value="${gender}"
+                th:text="${#strings.capitalize(#strings.toLowerCase(gender))}"></option>
+    </select>
 
     <button>Register</button>
     <p class="form-already">Already have an account? <a href="/login">Login</a>!</p>

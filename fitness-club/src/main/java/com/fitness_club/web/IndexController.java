@@ -1,14 +1,26 @@
 package com.fitness_club.web;
 
+import com.fitness_club.user.service.UserService;
 import com.fitness_club.web.dto.LoginRequest;
 import com.fitness_club.web.dto.RegisterRequest;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class IndexController {
+
+    private final UserService userService;
+
+    @Autowired
+    public IndexController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/")
     public String getIndexPage() {
@@ -38,6 +50,19 @@ public class IndexController {
         modelAndView.addObject("registerRequest", new RegisterRequest());
 
         return modelAndView;
+    }
+
+    @PostMapping("/register")
+    public ModelAndView registerNewUser(@Valid RegisterRequest registerRequest, BindingResult bindingResult){
+
+        if (bindingResult.hasErrors()){
+
+            return new ModelAndView("register");
+        }
+
+        userService.register(registerRequest);
+
+        return new ModelAndView("redirect:/login");
     }
 
 }
