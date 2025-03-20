@@ -1,10 +1,13 @@
 package com.fitness_club.web;
 
+import com.fitness_club.security.AuthenticationMetadata;
+import com.fitness_club.user.model.User;
 import com.fitness_club.user.service.UserService;
 import com.fitness_club.web.dto.LoginRequest;
 import com.fitness_club.web.dto.RegisterRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -56,7 +59,6 @@ public class IndexController {
     public ModelAndView registerNewUser(@Valid RegisterRequest registerRequest, BindingResult bindingResult){
 
         if (bindingResult.hasErrors()){
-
             return new ModelAndView("register");
         }
 
@@ -64,5 +66,18 @@ public class IndexController {
 
         return new ModelAndView("redirect:/login");
     }
+
+    @GetMapping("/home")
+    public ModelAndView getHomePage(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
+
+        User user = userService.getById(authenticationMetadata.getUserId());
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("home");
+        modelAndView.addObject("user", user);
+
+        return modelAndView;
+    }
+
 
 }
