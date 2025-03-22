@@ -3,6 +3,12 @@
     margin: 0;
 }
 
+body{
+    background: rgb(12,64,217);
+    background: radial-gradient(circle, rgba(12,64,217,1) 0%, rgba(43,177,106,1) 100%);
+}
+
+
 .footer p{
     margin-top: 2em;
     text-align: center;
@@ -17,3 +23,50 @@
 }
 
 
+/* Apply flexbox to make the page take full height */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* The main container stretches to fill available space */
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full viewport height */
+}
+
+/* The main content grows to push the footer down */
+main {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    gap: 1em;
+}
+
+nav, .content{
+    background: white;
+    padding: 2em;
+    border-radius: 1em;
+}
+
+nav{
+    flex-grow: 1;
+}
+
+.content{
+
+    flex-grow: 10;
+
+}
+
+
+
+/* The footer is always at the bottom */
+footer {
+    color: white;
+    text-align: center;
+    padding: 10px;
+}

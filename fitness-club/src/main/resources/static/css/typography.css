@@ -6,16 +6,19 @@ body {
     color: #222;
 }
 
-h1 {
-    font-size: 2.5em;
-    font-weight: 700;
-}
-
-h2 {
-    font-size: 2em;
-    font-weight: 700;
-}
-
 p {
     font-size: 1.1em;
 }
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    margin-bottom: 0.5em;
+    line-height: 1.2;
+}
+
+h1 { font-size: 2.5rem; /* 40px */ }
+h2 { font-size: 2rem;   /* 32px */ }
+h3 { font-size: 1.75rem; /* 28px */ }
+h4 { font-size: 1.5rem; /* 24px */ }
+h5 { font-size: 1.25rem; /* 20px */ }
+h6 { font-size: 1rem;   /* 16px */ }

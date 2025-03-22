@@ -1,14 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Iansui&display=swap');
 
-body{
-    background: rgb(12,64,217);
-    background: radial-gradient(circle, rgba(12,64,217,1) 0%, rgba(43,177,106,1) 100%); 
-    padding: 1em 3em 0 3em;
-}
 
 ul{
     display: flex;
     justify-content: end;
+    padding-top: 1em;
+    padding-right: 1em;
 }
 
 li{
@@ -28,9 +25,61 @@ a{
 
 .title{
     color: white;
-    margin: auto;
-    margin-top: 0.9em;
-    margin-bottom: 1.2em;
+    margin-top: 1em ;
     text-align: center;
     font-size: 200px;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background: rgb(12,64,217);
+    background: radial-gradient(circle, rgba(12,64,217,1) 0%, rgba(43,177,106,1) 100%);
+}
+
+
+.footer p{
+    margin-top: 2em;
+    text-align: center;
+    font-size: 30px;
+    color: white;
+}
+
+.icon{
+    width: 24px;
+    height: 24px;
+    color: white;
+}
+
+
+/* Apply flexbox to make the page take full height */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* The main container stretches to fill available space */
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full viewport height */
+}
+
+/* The main content grows to push the footer down */
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+/* The footer is always at the bottom */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
 }
