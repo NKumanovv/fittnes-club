@@ -13,17 +13,9 @@ body{
     margin-top: 2em;
     text-align: center;
     font-size: 30px;
-    color: white;
+    color: black;
 }
 
-.icon{
-    width: 24px;
-    height: 24px;
-    color: white;
-}
-
-
-/* Apply flexbox to make the page take full height */
 html, body {
     height: 100%;
     margin: 0;
@@ -31,14 +23,12 @@ html, body {
     flex-direction: column;
 }
 
-/* The main container stretches to fill available space */
 .container {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Full viewport height */
+    min-height: 100vh;
 }
 
-/* The main content grows to push the footer down */
 main {
     flex: 1;
     padding: 20px;
@@ -50,18 +40,65 @@ nav, .content{
     background: white;
     padding: 2em;
     border-radius: 1em;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+.content-container{
+    background: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+
+
 nav{
-    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    max-width: 400px;
+}
+
+nav section{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+nav section a{
+    display: flex;
+    justify-content: space-between;
+    font-size: larger;
+    color: black;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    border-radius: 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    line-height: 2.2;
+}
+
+a i{
+    display: block;
+    padding: 0.5em 0;
+    font-size: larger;
+}
+
+
+
+nav section a:hover{
+    font-weight: 600;
+    background: rgb(12,64,217);
+    background: linear-gradient(90deg, rgba(12,64,217,0.7) 0%, rgba(43,177,106,0.8) 100%);
 }
 
 .content{
-
     flex-grow: 10;
-
 }
 
+/*home page*/
+.content-container {
+    flex-grow: 7;
+}
 
 
 /* The footer is always at the bottom */

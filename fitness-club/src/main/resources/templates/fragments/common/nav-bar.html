@@ -26,14 +26,37 @@
 <th:block th:fragment="navbar">
     <nav>
         <section>
-            <h2>Dashboard</h2>
-            <a th:href="@{/}">Home</a>
-            <a th:href="@{/about}">About</a>
+            <h3>Dashboard</h3>
+            <a th:href="@{/home}">
+                <p>Home</p>
+                <i class="fa-solid fa-house"></i>
+            </a>
+            <a th:href="@{/}">Your Profile</a>
+            <a th:href="@{/}">My Plans</a>
+            <a th:href="@{/}">Workouts Page</a>
+            <a th:href="@{/}">Meals Page</a>
+            <a th:href="@{/}">Your Achievements</a>
+            <a th:href="@{/}">Your Plans</a>
         </section>
 
-        <section th:if="${user.role.name() == 'ADMIN'}">
-            <a th:href="@{/admin}">Admin Panel</a>
+        <section>
+            <h3>Discover</h3>
+            <a th:href="@{/}">Plan store</a>
+            <a th:href="@{/}">Purchase Plan Page</a>
         </section>
+
+<!--        <section>-->
+<!--            <h3>Information Pages</h3>-->
+<!--            <a th:href="@{/}">About us</a>-->
+<!--            <a th:href="@{/}">Contacts</a>-->
+<!--            <a th:href="@{/}">FAQ</a>-->
+<!--        </section>-->
+
+<!--        <section th:if="${user.role.name() == 'ADMIN'}">-->
+<!--            <h3>Admin Panel</h3>-->
+<!--            <a th:href="@{/}">Users</a>-->
+<!--            <a th:href="@{/}">User</a>-->
+<!--        </section>-->
     </nav>
 </th:block>
 
