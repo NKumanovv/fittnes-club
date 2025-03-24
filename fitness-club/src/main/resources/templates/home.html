@@ -14,8 +14,20 @@
             <div th:replace="~{fragments/common/nav-bar :: navbar}"></div>
 
             <div class="content">
+                <div class="acc-header">
+                    <div class="img-container" th:if="${user.gender == T(com.fitness_club.user.model.Gender).FEMALE}"><img th:src="${#strings.isEmpty(user.profilePicture) ? 'https://www.shareicon.net/data/2016/07/21/799353_user_512x512.png' : user.profilePicture}" alt="Profile Picture" class="profile-avatar"></div>
+                    <div class="img-container" th:if="${user.gender == T(com.fitness_club.user.model.Gender).MALE}"><img th:src="${#strings.isEmpty(user.profilePicture) ? 'https://www.shareicon.net/data/2016/07/21/799323_user_512x512.png' : user.profilePicture}" alt="Profile Picture" class="profile-avatar"></div>
+                    <h2 class="profile-name" th:text="${user.username}"></h2>
+                    <p class="id" th:text="${user.id}"></p>
+                </div>
 
-                
+                <div class="acc-inf">
+                    <div class="field">
+                        <strong>Name:</strong><p th:text="${user.firstName + ' ' + user.lastName}"></p>
+                    </div>
+
+
+                </div>
 
             </div>
 
