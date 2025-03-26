@@ -2,48 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <link rel="stylesheet" type="text/css" href="/css/typography.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/form.css">
     <title>Register</title>
 </head>
 <body>
 
-<form class="form" th:action="@{/register}" th:method="POST" th:object="${registerRequest}">
-    <h3>Register Here</h3>
+<div class="container">
+    <main>
+        <form th:action="@{/register}" th:method="POST" th:object="${registerRequest}">
+            <h1>Register Here</h1>
 
-    <label for="username">Username</label>
-    <input type="text" placeholder="Username" id="username" th:field="*{username}" required>
-    <p class="alert-warning" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" placeholder="ex. user123" id="username" th:field="*{username}" required>
+                <p class="alert-warning" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+            </div>
 
-    <label for="email">Email</label>
-    <input type="email" placeholder="Email" id="email" th:field="*{email}" required>
-    <p class="alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" placeholder="ex. user@gmail.com" id="email" th:field="*{email}" required>
+                <p class="alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+            </div>
 
-    <label for="password">Password</label>
-    <input type="password" placeholder="Password" id="password" th:field="*{password}" required>
-    <p class="alert-warning" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" placeholder="your password" id="password" th:field="*{password}" required>
+                <p class="alert-warning" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+            </div>
 
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" id="age" th:field="*{age}" required>
+                <p class="alert-warning" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></p>
+            </div>
 
-    <label for="age">Age</label>
-    <input type="number"  placeholder="Age" id="age" th:field="*{age}" required>
-    <p class="alert-warning" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></p>
+            <div class="form-group">
+                <label for="height">Height</label>
+                <input type="number"  id="height" th:field="*{height}" required>
+                <p class="alert-warning" th:if="${#fields.hasErrors('height')}" th:errors="*{height}"></p>
+            </div>
 
-    <label for="height">Height</label>
-    <input type="number" placeholder="Height(cm)" id="height" th:field="*{height}" required>
-    <p class="alert-warning" th:if="${#fields.hasErrors('height')}" th:errors="*{height}"></p>
+            <div class="form-group">
+                <label for="weight">Weight</label>
+                <input type="number" id="weight" th:field="*{weight}" required>
+                <p class="alert-warning" th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></p>
+            </div>
 
-    <label for="weight">Weight</label>
-    <input type="number" placeholder="Weight(kg)" id="weight" th:field="*{weight}" required>
-    <p class="alert-warning" th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></p>
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender" th:field="*{gender}">
+                    <option th:each="gender : ${T(com.fitness_club.user.model.Gender).values()}" th:value="${gender}"
+                            th:text="${#strings.capitalize(#strings.toLowerCase(gender))}"></option>
+                </select>
+            </div>
 
-    <label for="gender">Gender</label>
-    <select id="gender" th:field="*{gender}">
-        <option th:each="gender : ${T(com.fitness_club.user.model.Gender).values()}" th:value="${gender}"
-                th:text="${#strings.capitalize(#strings.toLowerCase(gender))}"></option>
-    </select>
-
-    <button>Register</button>
-    <p class="form-already">Already have an account? <a href="/login">Login</a>!</p>
-</form>
-
+            <button>Register</button>
+            <p class="form-already">Already have an account? <a href="/login">Login</a>!</p>
+        </form>
+    </main>
+</div>
 <th:block th:insert="~{fragments/common/footer :: footer}"></th:block>
 
 

@@ -1,0 +1,89 @@
+form{
+    background: white;
+    padding: 4em;
+    margin: auto;
+    border-radius: 1em;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    gap: 0.5em;
+    flex-direction: column;
+}
+
+form h1{
+    text-align: center;
+}
+
+form button {
+    align-self: center;
+    font-size: 20px;
+    max-width: 10em;
+    margin-top: 1em;
+    background-color: #2BB16AFF;
+    border: 1px solid #2BB16AFF;
+    border-radius: 1em;
+    box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+    color: #fff;
+    font-weight: 400;
+    outline: none;
+    outline: 0;
+    padding: 0.5em 1em;
+    text-align: center;
+}
+
+form button:hover{
+    background-color: #1a6941;
+    border: 1px solid #1a6941;
+    box-shadow: rgba(0, 0, 0, 0.34) 0 2px 4px 0;
+}
+
+form p{
+text-align: center;
+}
+
+form p a {
+    color: #2BB16AFF;
+}
+form p a:hover{
+    color: #239358;
+    text-shadow: rgb(43, 177, 106) 1px 0 10px;}
+
+.form-group {
+    display: flex;
+    gap: 1em;
+}
+
+label, input, select{
+    font-size: large;
+    flex: 1;
+}
+label{
+    font-weight: bold;
+}
+
+input, select{
+    padding: 0 0.5em;
+    max-width: 15em;
+    border: 0;
+    border-radius: 3px;
+    color: #000000;
+    background: linear-gradient(0deg, rgba(43, 177, 106, 0.63) 0%, rgba(43, 177, 106, 0.17) 100%);;
+}
+
+
+
+
+/* Hide number input controls in Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Hide number input controls in Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+
+
+

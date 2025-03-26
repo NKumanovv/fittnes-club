@@ -9,7 +9,6 @@
 </head>
 <body>
     <div class="container">
-
         <main>
             <div th:replace="~{fragments/common/nav-bar :: navbar}"></div>
 
@@ -23,16 +22,28 @@
 
                 <div class="acc-inf">
                     <div class="field">
-                        <strong>Name:</strong><p th:text="${user.firstName + ' ' + user.lastName}"></p>
+                        <strong>Name:</strong><p th:text="${#strings.isEmpty(user.firstName) ? 'Add your name to show it here.' : user.firstName + ' ' + user.lastName}"></p>
                     </div>
-
-
+                    <div class="field">
+                        <strong>Age:</strong><p th:text="${user.age == null ? 'Add your age to show it here.' : user.age}"></p>
+                        <strong>Height:</strong><p th:text="${user.height == null ? 'Add your height to show it here.' : user.height}"></p>
+                        <strong>Weight:</strong><p th:text="${user.weight == null ? 'Add your weight to show it here.' : user.weight}"></p>
+                    </div>
+                    <div class="field">
+                        <strong>Email:</strong><p th:text="${#strings.isEmpty(user.email) ? 'Add your email to show it here.' : user.email}"></p>
+                    </div>
+                    <div class="field">
+                        <strong>Member since:</strong><p th:text="${#temporals.format(user.createdOn, 'dd MMM YYYY')}"></p>
+                    </div>
                 </div>
-
+                <a> </a>
             </div>
 
             <div class="content-container">
-                <div class="content"></div>
+                <div class="content">
+
+
+                </div>
                 <div class="content"></div>
             </div>
 

@@ -10,10 +10,9 @@ body{
 
 
 .footer p{
-    margin-top: 2em;
     text-align: center;
     font-size: 30px;
-    color: black;
+    color: white;
 }
 
 html, body {
@@ -26,7 +25,7 @@ html, body {
 .container {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 90vh;
 }
 
 main {
@@ -111,9 +110,10 @@ nav section a:hover{
 }
 
 .acc-inf{
+    padding: 2em;
     display: flex;
+    flex-direction: column;
 }
-
 
 
 
