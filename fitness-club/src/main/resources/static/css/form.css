@@ -56,6 +56,15 @@ label, input, select{
     font-size: large;
     flex: 1;
 }
+
+.alert-warning{
+    font-size: 16px;
+    line-height: 1em;
+    font-weight: bold;
+    text-align: right;
+    color: red;
+}
+
 label{
     font-weight: bold;
 }
@@ -68,8 +77,6 @@ input, select{
     color: #000000;
     background: linear-gradient(0deg, rgba(43, 177, 106, 0.63) 0%, rgba(43, 177, 106, 0.17) 100%);;
 }
-
-
 
 
 /* Hide number input controls in Chrome, Safari, Edge, Opera */
