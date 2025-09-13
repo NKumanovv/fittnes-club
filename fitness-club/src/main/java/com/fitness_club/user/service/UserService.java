@@ -6,9 +6,11 @@ import com.fitness_club.user.model.User;
 import com.fitness_club.user.model.UserRole;
 import com.fitness_club.user.repository.UserRepository;
 import com.fitness_club.web.dto.RegisterRequest;
+import com.fitness_club.web.dto.UserEditRequest;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -24,9 +26,7 @@ import java.util.UUID;
 public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
-
     private final PasswordEncoder passwordEncoder;
-
 
 
     @Autowired
@@ -83,5 +83,29 @@ public class UserService implements UserDetailsService {
     public User getById(UUID id) {
 
         return userRepository.findById(id).orElseThrow(() -> new DomainException("User with id [%s] does not exist.".formatted(id)));
+    }
+
+    //@CacheEvict(value = "users", allEntries = true)
+    public void editUserDetails(UUID userId, UserEditRequest userEditRequest) {
+
+        User user = getById(userId);
+
+        //if (userEditRequest.getEmail().isBlank()) {
+        //    notificationService.saveNotificationPreference(userId, false, null);
+        //}
+
+        user.setFirstName(userEditRequest.getFirstName());
+        user.setLastName(userEditRequest.getLastName());
+        user.setAge(userEditRequest.getAge());
+        user.setHeight(userEditRequest.getHeight());
+        user.setWeight(userEditRequest.getWeight());
+        user.setEmail(userEditRequest.getEmail());
+        user.setProfilePicture(userEditRequest.getProfilePicture());
+
+        //if (!userEditRequest.getEmail().isBlank()) {
+        //    notificationService.saveNotificationPreference(userId, true, userEditRequest.getEmail());
+        //}
+
+        userRepository.save(user);
     }
 }

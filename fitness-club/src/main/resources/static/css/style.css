@@ -9,6 +9,8 @@ body{
 }
 
 
+
+
 .footer p{
     text-align: center;
     font-size: 30px;
@@ -80,6 +82,31 @@ a i{
     display: block;
     padding: 0.5em 0;
     font-size: larger;
+}
+
+
+
+.button{
+    align-self: center;
+    font-size: 20px;
+    max-width: 10em;
+    margin-top: 1em;
+    background-color: #2BB16AFF;
+    border: 1px solid #2BB16AFF;
+    border-radius: 1em;
+    box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+    color: #fff;
+    font-weight: 400;
+    outline: none;
+    outline: 0;
+    padding: 0.5em 1em;
+    text-align: center;
+}
+
+.button:hover{
+    background-color: #1a6941;
+    border: 1px solid #1a6941;
+    box-shadow: rgba(0, 0, 0, 0.34) 0 2px 4px 0;
 }
 
 

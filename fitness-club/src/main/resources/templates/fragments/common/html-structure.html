@@ -7,17 +7,16 @@
 <body>
 
 <div class="container">
-    <header>
-        <h1>Title</h1>
-    </header>
+
+    <div th:replace="~{fragments/common/nav-bar :: navbar}"></div>
+
 
     <main>
         <p>content</p>
     </main>
 
-    <footer>
-        <p>footer</p>
-    </footer>
+    <th:block th:insert="~{fragments/common/footer :: footer}"></th:block>
+
 </div>
 
 </body>

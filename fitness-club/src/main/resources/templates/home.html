@@ -36,7 +36,7 @@
                         <strong>Member since:</strong><p th:text="${#temporals.format(user.createdOn, 'dd MMM YYYY')}"></p>
                     </div>
                 </div>
-                <a> </a>
+                <a class="button" th:href="@{'/users/' + ${user.id} + '/profile'}">Edit profile</a>
             </div>
 
             <div class="content-container">
@@ -53,10 +53,7 @@
 
         </main>
 
-    <th:block th:insert="~{fragments/common/footer :: footer}"></th:block>
-
-
-
+        <th:block th:insert="~{fragments/common/footer :: footer}"></th:block>
 
     </div>
 </body>

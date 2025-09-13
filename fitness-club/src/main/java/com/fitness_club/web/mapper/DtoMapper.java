@@ -12,6 +12,9 @@ public class DtoMapper {
         return UserEditRequest.builder()
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
+                .age(user.getAge())
+                .height(user.getHeight())
+                .weight(user.getWeight())
                 .email(user.getEmail())
                 .profilePicture(user.getProfilePicture())
                 .build();
