@@ -58,7 +58,7 @@ public class User {
     private List<Meal> meals = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
-    private List<FitnessPlan> purchasedPlans = new ArrayList<>();
+    private List<FitnessPlan> purchasedPlans = new ArrayList<>(); 
 
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
     private List<Medal> medals = new ArrayList<>();

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/typography.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <title>Home</title>
+</head>
+<body>
+<div class="container">
+    <main>
+        <div th:replace="~{fragments/common/nav-bar :: navbar}"></div>
+
+        <div class="content">
+            <h2>Meals:</h2>
+            <div class="meal-container" th:each="meal:${meals}">
+                <a th:href="@{/meals/{id}(id=${meal.id})}">
+                    <h5 th:text="${meal.name}"></h5>
+                    <div><strong>Calories:</strong><p th:text="${meal.calories}"></p></div>
+                    <div><strong>Proteins:</strong><p th:text="${meal.protein}"></p></div>
+                    <div><strong>Carbs:</strong><p th:text="${meal.carbs}"></p></div>
+                    <div><strong>Fats:</strong><p th:text="${meal.fats}"></p></div>
+                </a>
+                <a href="">
+                    +
+                </a>
+            </div>
+
+        </div>
+
+    </main>
+
+    <th:block th:insert="~{fragments/common/footer :: footer}"></th:block>
+
+</div>
+</body>
+</html>

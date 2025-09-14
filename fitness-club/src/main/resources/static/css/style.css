@@ -142,7 +142,56 @@ nav section a:hover{
     flex-direction: column;
 }
 
+.meal-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-evenly;
+}
 
+.meal-container a{
+    color: black;
+    border: 2px solid #2BB16AFF;
+    border-radius: 1em;
+    margin: 1em;
+    padding: 1em;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.meal-container a:hover{
+     border: 2px solid #1a6941;
+}
+
+
+.meal-container a:last-child{
+    font-size: 5em;
+    color: #2BB16AFF;
+    border: 2px solid #2BB16AFF;
+    border-radius: 1rem;
+    margin: 1rem;
+    padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.meal-container a:last-child:hover{
+    font-size: 5em;
+    color: #1a6941;
+    border: 2px solid #1a6941;
+    border-radius: 1rem;
+    margin: 1rem;
+    padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+
+
+
+
+
+.meal-container a div{
+    display: flex;
+    justify-content: space-between;
+}
 
 
 

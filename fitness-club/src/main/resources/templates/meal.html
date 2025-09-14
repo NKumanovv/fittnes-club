@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <link rel="stylesheet" type="text/css" href="/css/typography.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/form.css">
+    <link rel="stylesheet" type="text/css" href="/css/sliderMeal.css">
+    <title>Edit profile info</title>
+</head>
+<body>
+
+<main>
+    <form th:action="@{'/meal/' + ${meal.id}}" th:method="PUT" th:object="${createMealRequest}">
+        <h1>Edit Profile</h1>
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" th:placeholder="${createMealRequest.name}" name="name" th:field="*{name}">
+            <p class="alert-warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+        </div>
+
+        <div class="form-group">
+            <label for="calories">Calories</label>
+            <input type="number" id="calories" th:placeholder="${createMealRequest.calories}" name="calories" th:field="*{calories}">
+            <p class="alert-warning" th:if="${#fields.hasErrors('calories')}" th:errors="*{calories}"></p>
+        </div>
+
+        <div class="form-group">
+            <label for="protein">Protein</label>
+            <input type="number" id="protein"  th:placeholder="${createMealRequest.protein}" name="protein" th:field="*{protein}">
+            <p class="alert-warning" th:if="${#fields.hasErrors('protein')}" th:errors="*{protein}"></p>
+        </div>
+
+        <div class="form-group">
+            <label for="carbs">Carbs</label>
+            <input type="number" id="carbs"  th:placeholder="${createMealRequest.carbs}" name="carbs" th:field="*{carbs}">
+            <p class="alert-warning" th:if="${#fields.hasErrors('carbs')}" th:errors="*{carbs}"></p>
+        </div>
+
+        <div class="form-group">
+            <label for="fats">Fats</label>
+            <input type="number" id="fats"  th:placeholder="${createMealRequest.fats}" name="fats" th:field="*{fats}">
+            <p class="alert-warning" th:if="${#fields.hasErrors('fats')}" th:errors="*{fats}"></p>
+        </div>
+
+        <div class="form-group">
+            <label class="switch">
+                <input type="checkbox" th:field="*{public}" />
+                <span class="slider"></span>
+            </label>
+            <span th:text="${createMealRequest.public} ? 'Enabled' : 'Disabled'"></span>
+        </div>
+
+
+
+
+
+        <button type="submit">Save Changes</button>
+    </form>
+
+</main>
+<th:block th:insert="~{fragments/common/footer :: footer}"></th:block>
+
+
+</body>
+</html>

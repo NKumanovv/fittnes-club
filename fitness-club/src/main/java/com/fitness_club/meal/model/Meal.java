@@ -2,9 +2,15 @@ package com.fitness_club.meal.model;
 
 import com.fitness_club.user.model.User;
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.UUID;
 
+@Builder
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Meal {
 
