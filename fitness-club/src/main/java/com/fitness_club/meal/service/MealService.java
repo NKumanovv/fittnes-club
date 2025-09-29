@@ -58,4 +58,21 @@ public class MealService {
 
         mealRepository.save(meal);
     }
+
+    public void createFirstMeal(User user){
+        Meal meal = mealRepository.save(initializeFirstMeal(user));
+    }
+
+
+    public Meal initializeFirstMeal(User user) {
+        return Meal.builder()
+                .name("Chicken and rice")
+                .calories(600.0)
+                .protein(50.0)
+                .carbs(50.0)
+                .fats(5.0)
+                .isPublic(false)
+                .user(user)
+                .build();
+    }
 }

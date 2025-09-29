@@ -1,6 +1,8 @@
 package com.fitness_club.user.service;
 
 import com.fitness_club.exeption.DomainException;
+import com.fitness_club.meal.model.Meal;
+import com.fitness_club.meal.service.MealService;
 import com.fitness_club.security.AuthenticationMetadata;
 import com.fitness_club.user.model.User;
 import com.fitness_club.user.model.UserRole;
@@ -18,6 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -27,12 +30,14 @@ public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final MealService mealService;
 
 
     @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, MealService mealService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.mealService = mealService;
     }
 
 
@@ -55,9 +60,9 @@ public class UserService implements UserDetailsService {
         }
 
         User user = userRepository.save(initializeUser(registerRequest));
+        mealService.createFirstMeal(user);
 
         //subscriptionService.createDefaultSubscription(user);
-        //walletService.createNewWallet(user);
 
         log.info(String.format("Successfully created new account for user [%s] with id [%s].", user.getUsername(), user.getId()));
 
