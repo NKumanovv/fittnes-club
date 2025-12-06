@@ -36,10 +36,10 @@
 }
 
 /* Checked state */
-input:checked + .slider {
+input:checked ~ .slider {
     background-color: #4CAF50;
 }
 
-input:checked + .slider:before {
-    transform: translateX(24px);
+input:checked ~ .slider:before {
+    transform: translateX(274px);
 }

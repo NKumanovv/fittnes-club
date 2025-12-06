@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/css/typography.css">
@@ -13,17 +13,17 @@
 
         <div class="content">
             <h2>Meals:</h2>
-            <div class="meal-container" th:each="meal:${meals}">
-                <a th:href="@{/meals/{id}(id=${meal.id})}">
-                    <h5 th:text="${meal.name}"></h5>
-                    <div><strong>Calories:</strong><p th:text="${meal.calories}"></p></div>
-                    <div><strong>Proteins:</strong><p th:text="${meal.protein}"></p></div>
-                    <div><strong>Carbs:</strong><p th:text="${meal.carbs}"></p></div>
-                    <div><strong>Fats:</strong><p th:text="${meal.fats}"></p></div>
-                </a>
-                <a href="">
-                    +
-                </a>
+            <div class="meal-content-container">
+                <div class="meal-container" th:each="meal:${meals}">
+                    <a class = "meal" th:href="@{/meals/{id}(id=${meal.id})}">
+                        <h5 th:text="${meal.name}"></h5>
+                        <div><strong>Calories:</strong><p th:text="${meal.calories}"></p></div>
+                        <div><strong>Proteins:</strong><p th:text="${meal.protein}"></p></div>
+                        <div><strong>Carbs:</strong><p th:text="${meal.carbs}"></p></div>
+                        <div><strong>Fats:</strong><p th:text="${meal.fats}"></p></div>
+                    </a>
+                </div>
+                <a class = "add-meal" th:href="@{/meals/new}">+</a>
             </div>
 
         </div>

@@ -142,14 +142,19 @@ nav section a:hover{
     flex-direction: column;
 }
 
+.meal-content-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 .meal-container{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-content: space-evenly;
 }
 
-.meal-container a{
+.meal, .add-meal{
     color: black;
     border: 2px solid #2BB16AFF;
     border-radius: 1em;
@@ -158,12 +163,12 @@ nav section a:hover{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.meal-container a:hover{
+.meal:hover, .add-meal:hover{
      border: 2px solid #1a6941;
 }
 
 
-.meal-container a:last-child{
+.add-meal{
     font-size: 5em;
     color: #2BB16AFF;
     border: 2px solid #2BB16AFF;
@@ -173,7 +178,7 @@ nav section a:hover{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.meal-container a:last-child:hover{
+.add-meal:hover{
     font-size: 5em;
     color: #1a6941;
     border: 2px solid #1a6941;
@@ -184,11 +189,7 @@ nav section a:hover{
 }
 
 
-
-
-
-
-.meal-container a div{
+.meal div{
     display: flex;
     justify-content: space-between;
 }

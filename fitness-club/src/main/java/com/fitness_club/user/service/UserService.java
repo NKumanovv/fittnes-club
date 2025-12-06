@@ -71,7 +71,6 @@ public class UserService implements UserDetailsService {
 
     private User initializeUser(RegisterRequest registerRequest) {
 
-
         return User.builder()
                 .username(registerRequest.getUsername())
                 .email(registerRequest.getEmail())

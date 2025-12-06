@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -62,8 +59,17 @@ public class MealController {
         return modelAndView;
     }
 
+    @GetMapping("/new")
+    public ModelAndView getNewMealPage(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("new-meal");
+        modelAndView.addObject("createMealRequest", new CreateMealRequest());
+
+        return modelAndView;
+    }
+
     @PutMapping("/{id}")
-    public ModelAndView updateMeal(@PathVariable  UUID id, @Valid CreateMealRequest createMealRequest, BindingResult bindingResult){
+    public ModelAndView updateMeal(@PathVariable UUID id, @Valid CreateMealRequest createMealRequest, BindingResult bindingResult){
 
         if (bindingResult.hasErrors()){
             Meal meal = mealService.getById(id);
@@ -77,7 +83,23 @@ public class MealController {
         mealService.editMealDetails(id, createMealRequest);
 
 
-        return new ModelAndView("redirect:/home");
+        return new ModelAndView("redirect:/meals");
+    }
+
+    @PostMapping("/new")
+    public ModelAndView createMeal(@Valid CreateMealRequest createMealRequest, BindingResult bindingResult, @AuthenticationPrincipal AuthenticationMetadata authenticationMetadata){
+
+        if (bindingResult.hasErrors()){
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("meal");
+            modelAndView.addObject("createMealRequest", createMealRequest);
+            return modelAndView;
+        }
+
+        User user = userService.getById(authenticationMetadata.getUserId());
+        mealService.createMeal(user, createMealRequest);
+
+        return new ModelAndView("redirect:/meals");
     }
 
 }

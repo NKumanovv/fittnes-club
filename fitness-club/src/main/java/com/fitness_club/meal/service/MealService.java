@@ -21,7 +21,7 @@ public class MealService {
     }
 
 
-    public Meal initializeMeal(CreateMealRequest createMealRequest){
+    public Meal initializeMeal(User user, CreateMealRequest createMealRequest){
         return Meal.builder()
                 .name(createMealRequest.getName())
                 .calories(createMealRequest.getCalories())
@@ -29,7 +29,12 @@ public class MealService {
                 .carbs(createMealRequest.getCarbs())
                 .fats(createMealRequest.getFats())
                 .isPublic(createMealRequest.isPublic())
+                .user(user)
                 .build();
+    }
+
+    public Meal createMeal(User user, CreateMealRequest createMealRequest){
+        return mealRepository.save(initializeMeal(user, createMealRequest));
     }
 
     public Meal getById(UUID id){
@@ -62,7 +67,6 @@ public class MealService {
     public void createFirstMeal(User user){
         Meal meal = mealRepository.save(initializeFirstMeal(user));
     }
-
 
     public Meal initializeFirstMeal(User user) {
         return Meal.builder()
