@@ -1,8 +1,7 @@
 package com.fitness_club.user.model;
 
-import com.fitness_club.fitnessPlan.model.FitnessPlan;
 import com.fitness_club.meal.model.Meal;
-import com.fitness_club.medal.model.Medal;
+import com.fitness_club.workout.model.Workout;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -58,9 +57,7 @@ public class User {
     private List<Meal> meals = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
-    private List<FitnessPlan> purchasedPlans = new ArrayList<>(); 
+    private List<Workout> workouts = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
-    private List<Medal> medals = new ArrayList<>();
 
 }

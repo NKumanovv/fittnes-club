@@ -1,11 +1,15 @@
 package com.fitness_club.workout.model;
 
-import com.fitness_club.fitnessPlan.model.FitnessPlan;
+import com.fitness_club.user.model.User;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.UUID;
 
 @Entity
+@Getter
+@Setter
 public class Workout {
 
     @Id
@@ -26,6 +30,6 @@ public class Workout {
     private int duration;
 
     @ManyToOne
-    private FitnessPlan fitnessPlan;
+    private User user;
 
 }
