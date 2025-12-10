@@ -97,4 +97,10 @@ public class WorkoutController {
 
         return new ModelAndView("redirect:/workouts");
     }
+
+    @DeleteMapping("/{id}")
+    public ModelAndView deleteWorkout(@PathVariable UUID id) {
+        workoutService.deleteWorkout(id);
+        return new ModelAndView("redirect:/workouts");
+    }
 }

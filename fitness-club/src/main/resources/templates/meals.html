@@ -22,6 +22,11 @@
                         <div><strong>Carbs:</strong><p th:text="${meal.carbs}"></p></div>
                         <div><strong>Fats:</strong><p th:text="${meal.fats}"></p></div>
                     </a>
+                    <form th:action="@{/meals/{id}(id=${meal.id})}" th:method="DELETE">
+                        <button type="submit" class="delete-btn" onclick="return confirm('Delete this meal?');">
+                            X
+                        </button>
+                    </form>
                 </div>
                 <a class = "add-meal" th:href="@{/meals/new}">+</a>
             </div>

@@ -21,8 +21,13 @@
                         <div><strong>Duration:</strong><p th:text="${workout.duration} + ' min'"></p></div>
                         <div><strong>Description:</strong><p th:text="${#strings.abbreviate(workout.description, 30)}"></p></div>
                     </a>
-                </div>
 
+                    <form th:action="@{/workouts/{id}(id=${workout.id})}" th:method="DELETE">
+                        <button type="submit" class="delete-btn" onclick="return confirm('Are you sure you want to delete this?');">
+                            X
+                        </button>
+                    </form>
+                </div>
                 <a class="add-workout" th:href="@{/workouts/new}">+</a>
             </div>
 

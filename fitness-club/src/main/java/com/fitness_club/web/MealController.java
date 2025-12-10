@@ -102,6 +102,12 @@ public class MealController {
         return new ModelAndView("redirect:/meals");
     }
 
+    @DeleteMapping("/{id}")
+    public ModelAndView deleteMeal(@PathVariable UUID id) {
+        mealService.deleteMeal(id);
+        return new ModelAndView("redirect:/meals");
+    }
+
 }
 
 

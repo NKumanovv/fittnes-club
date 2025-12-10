@@ -79,4 +79,8 @@ public class MealService {
                 .user(user)
                 .build();
     }
+
+    public void deleteMeal(UUID id) {
+        mealRepository.deleteById(id);
+    }
 }

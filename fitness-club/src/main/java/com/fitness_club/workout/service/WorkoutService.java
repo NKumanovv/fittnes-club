@@ -65,4 +65,8 @@ public class WorkoutService {
                 .user(user)
                 .build();
     }
+
+    public void deleteWorkout(UUID id) {
+        workoutRepository.deleteById(id);
+    }
 }
