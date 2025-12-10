@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/typography.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <title>Workouts</title>
+</head>
+<body>
+<div class="container">
+    <main>
+        <div th:replace="~{fragments/common/nav-bar :: navbar}"></div>
+
+        <div class="content">
+            <h2>Workouts:</h2>
+            <div class="workout-content-container">
+                <div class="workout-container" th:each="workout : ${workouts}">
+                    <a class="workout" th:href="@{/workouts/{id}(id=${workout.id})}">
+                        <h5 th:text="${workout.name}"></h5>
+                        <div><strong>Difficulty:</strong><p th:text="${workout.difficulty}"></p></div>
+                        <div><strong>Duration:</strong><p th:text="${workout.duration} + ' min'"></p></div>
+                        <div><strong>Description:</strong><p th:text="${#strings.abbreviate(workout.description, 30)}"></p></div>
+                    </a>
+                </div>
+
+                <a class="add-workout" th:href="@{/workouts/new}">+</a>
+            </div>
+
+        </div>
+
+    </main>
+
+    <th:block th:insert="~{fragments/common/footer :: footer}"></th:block>
+
+</div>
+</body>
+</html>

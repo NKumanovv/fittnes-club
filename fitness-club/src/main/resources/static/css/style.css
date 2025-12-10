@@ -142,19 +142,19 @@ nav section a:hover{
     flex-direction: column;
 }
 
-.meal-content-container{
+.meal-content-container, .workout-content-container{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-.meal-container{
+.meal-container, .workout-container{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-.meal, .add-meal{
+.meal, .add-meal, .workout, .add-workout{
     color: black;
     border: 2px solid #2BB16AFF;
     border-radius: 1em;
@@ -163,12 +163,12 @@ nav section a:hover{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.meal:hover, .add-meal:hover{
+.meal:hover, .add-meal:hover, .workout:hover, .add-workout:hover{
      border: 2px solid #1a6941;
 }
 
 
-.add-meal{
+.add-meal, .add-workout{
     font-size: 5em;
     color: #2BB16AFF;
     border: 2px solid #2BB16AFF;
@@ -178,7 +178,7 @@ nav section a:hover{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.add-meal:hover{
+.add-meal:hover, .add-workout:hover{
     font-size: 5em;
     color: #1a6941;
     border: 2px solid #1a6941;
@@ -189,7 +189,7 @@ nav section a:hover{
 }
 
 
-.meal div{
+.meal div, .workout div{
     display: flex;
     justify-content: space-between;
 }

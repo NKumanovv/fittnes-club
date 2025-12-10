@@ -34,11 +34,10 @@ public class WorkoutController {
     @GetMapping
     public ModelAndView getWorkoutsPage(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
         User user = userService.getById(authenticationMetadata.getUserId());
-        // Assuming your User entity has a List<Workout> workouts field
         List<Workout> workouts = user.getWorkouts();
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("workouts"); // corresponds to workouts.html
+        modelAndView.setViewName("workouts");
         modelAndView.addObject("user", user);
         modelAndView.addObject("workouts", workouts);
 
@@ -50,7 +49,7 @@ public class WorkoutController {
         Workout workout = workoutService.getById(id);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("workout"); // corresponds to workout.html (details/edit view)
+        modelAndView.setViewName("workout");
         modelAndView.addObject("workout", workout);
         modelAndView.addObject("createWorkoutRequest", DtoMapper.mapWorkoutToCreateWorkoutRequest(workout));
 
@@ -60,16 +59,14 @@ public class WorkoutController {
     @GetMapping("/new")
     public ModelAndView getNewWorkoutPage() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("new-workout"); // corresponds to new-workout.html
+        modelAndView.setViewName("new-workout");
         modelAndView.addObject("createWorkoutRequest", new CreateWorkoutRequest());
 
         return modelAndView;
     }
 
     @PutMapping("/{id}")
-    public ModelAndView updateWorkout(@PathVariable UUID id,
-                                      @Valid CreateWorkoutRequest createWorkoutRequest,
-                                      BindingResult bindingResult) {
+    public ModelAndView updateWorkout(@PathVariable UUID id, @Valid CreateWorkoutRequest createWorkoutRequest, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             Workout workout = workoutService.getById(id);
@@ -86,9 +83,7 @@ public class WorkoutController {
     }
 
     @PostMapping("/new")
-    public ModelAndView createWorkout(@Valid CreateWorkoutRequest createWorkoutRequest,
-                                      BindingResult bindingResult,
-                                      @AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
+    public ModelAndView createWorkout(@Valid CreateWorkoutRequest createWorkoutRequest, BindingResult bindingResult, @AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
 
         if (bindingResult.hasErrors()) {
             ModelAndView modelAndView = new ModelAndView();

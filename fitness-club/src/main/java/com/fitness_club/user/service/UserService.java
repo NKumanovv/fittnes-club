@@ -9,6 +9,8 @@ import com.fitness_club.user.model.UserRole;
 import com.fitness_club.user.repository.UserRepository;
 import com.fitness_club.web.dto.RegisterRequest;
 import com.fitness_club.web.dto.UserEditRequest;
+import com.fitness_club.workout.repository.WorkoutRepository;
+import com.fitness_club.workout.service.WorkoutService;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +33,15 @@ public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final MealService mealService;
+    private final WorkoutService workoutService;
 
 
     @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, MealService mealService) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, MealService mealService, WorkoutService workoutService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.mealService = mealService;
+        this.workoutService = workoutService;
     }
 
 
@@ -61,8 +65,7 @@ public class UserService implements UserDetailsService {
 
         User user = userRepository.save(initializeUser(registerRequest));
         mealService.createFirstMeal(user);
-
-        //subscriptionService.createDefaultSubscription(user);
+        workoutService.createFirstWorkout(user);
 
         log.info(String.format("Successfully created new account for user [%s] with id [%s].", user.getUsername(), user.getId()));
 

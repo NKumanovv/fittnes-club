@@ -2,14 +2,16 @@ package com.fitness_club.workout.model;
 
 import com.fitness_club.user.model.User;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.UUID;
 
 @Entity
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Workout {
 
     @Id
