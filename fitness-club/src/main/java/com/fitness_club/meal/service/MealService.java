@@ -7,6 +7,8 @@ import com.fitness_club.user.model.User;
 import com.fitness_club.web.dto.CreateMealRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -40,11 +42,13 @@ public class MealService {
         return mealRepository.save(initializeMeal(user, createMealRequest));
     }
 
+    @Cacheable(value = "meals", key = "#id")
     public Meal getById(UUID id){
         return mealRepository.findMealById(id).orElseThrow(() -> new DomainException("Meal with id [%s] does not exist.".formatted(id)));
     }
 
 
+    @CacheEvict(value = "meals", key = "#id")
     public void editMealDetails(UUID mealId, CreateMealRequest createMealRequest) {
 
         Meal meal = getById(mealId);
@@ -76,6 +80,7 @@ public class MealService {
                 .build();
     }
 
+    @CacheEvict(value = "meals", key = "#id")
     public void deleteMeal(UUID id) {
         mealRepository.deleteById(id);
         log.warn("Deleting meal ID %s}]".formatted(id));

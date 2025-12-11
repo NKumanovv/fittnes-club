@@ -8,6 +8,8 @@ import com.fitness_club.user.model.User;
 import com.fitness_club.web.dto.CreateWorkoutRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -38,11 +40,12 @@ public class WorkoutService {
         return workoutRepository.save(initializeWorkout(user, createWorkoutRequest));
     }
 
+    @Cacheable(value = "workouts", key = "#id")
     public Workout getById(UUID id) {
-        return workoutRepository.findById(id)
-                .orElseThrow(() -> new DomainException("Workout with id [%s] does not exist.".formatted(id)));
+        return workoutRepository.findById(id).orElseThrow(() -> new DomainException("Workout with id [%s] does not exist.".formatted(id)));
     }
 
+    @CacheEvict(value = "workouts", key = "#id")
     public void editWorkoutDetails(UUID workoutId, CreateWorkoutRequest createWorkoutRequest) {
 
         Workout workout = getById(workoutId);
@@ -70,6 +73,7 @@ public class WorkoutService {
                 .build();
     }
 
+    @CacheEvict(value = "workouts", key = "#id")
     public void deleteWorkout(UUID id) {
         workoutRepository.deleteById(id);
         log.info("Deleting history log with ID: [%s]".formatted(id));

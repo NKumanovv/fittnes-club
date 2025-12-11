@@ -15,6 +15,7 @@ import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -94,11 +95,12 @@ public class UserService implements UserDetailsService {
                 .build();
     }
 
+    @Cacheable(value = "users", key = "#id")
     public User getById(UUID id) {
-
         return userRepository.findById(id).orElseThrow(() -> new DomainException("User with id [%s] does not exist.".formatted(id)));
     }
 
+    @CacheEvict(value = "users", key = "#id")
     public void editUserDetails(UUID userId, UserEditRequest userEditRequest) {
 
         User user = getById(userId);
@@ -114,10 +116,12 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
+    @Cacheable(value = "users")
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
+    @CacheEvict(value = "users", allEntries = true)
     public void toggleUserStatus(UUID userId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -127,6 +131,7 @@ public class UserService implements UserDetailsService {
         log.warn("Toggling active status for user ID [%s]".formatted( userId));
     }
 
+    @CacheEvict(value = "users", allEntries = true)
     public void changeUserRole(UUID userId, UserRole newRole) {
         User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
 
