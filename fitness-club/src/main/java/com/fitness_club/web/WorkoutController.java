@@ -40,7 +40,8 @@ public class WorkoutController {
     @GetMapping
     public ModelAndView getWorkoutsPage(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
         User user = userService.getById(authenticationMetadata.getUserId());
-        List<Workout> workouts = user.getWorkouts();
+
+        List<Workout> workouts = workoutService.getAllWorkoutsById(user.getId());
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("workouts");

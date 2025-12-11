@@ -12,6 +12,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -35,17 +36,18 @@ public class WorkoutService {
                 .build();
     }
 
+    @CacheEvict(value = "workouts", allEntries = true)
     public Workout createWorkout(User user, CreateWorkoutRequest createWorkoutRequest) {
         log.info("Creating new workout [%s] for user [%s]".formatted(createWorkoutRequest.getName(), user.getUsername()));
         return workoutRepository.save(initializeWorkout(user, createWorkoutRequest));
     }
 
-    @Cacheable(value = "workouts", key = "#id")
+    @Cacheable(value = "workouts")
     public Workout getById(UUID id) {
         return workoutRepository.findById(id).orElseThrow(() -> new DomainException("Workout with id [%s] does not exist.".formatted(id)));
     }
 
-    @CacheEvict(value = "workouts", key = "#id")
+    @CacheEvict(value = "workouts", allEntries = true)
     public void editWorkoutDetails(UUID workoutId, CreateWorkoutRequest createWorkoutRequest) {
 
         Workout workout = getById(workoutId);
@@ -73,9 +75,14 @@ public class WorkoutService {
                 .build();
     }
 
-    @CacheEvict(value = "workouts", key = "#id")
+    @CacheEvict(value = "workouts", allEntries = true)
     public void deleteWorkout(UUID id) {
         workoutRepository.deleteById(id);
         log.info("Deleting history log with ID: [%s]".formatted(id));
+    }
+
+    @Cacheable(value = "workouts")
+    public List<Workout> getAllWorkoutsById(UUID id) {
+        return workoutRepository.getAllWorkoutsByUser_Id(id);
     }
 }

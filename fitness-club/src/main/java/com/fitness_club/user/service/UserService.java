@@ -95,12 +95,12 @@ public class UserService implements UserDetailsService {
                 .build();
     }
 
-    @Cacheable(value = "users", key = "#id")
+    @Cacheable(value = "users")
     public User getById(UUID id) {
         return userRepository.findById(id).orElseThrow(() -> new DomainException("User with id [%s] does not exist.".formatted(id)));
     }
 
-    @CacheEvict(value = "users", key = "#id")
+    @CacheEvict(value = "users", allEntries = true)
     public void editUserDetails(UUID userId, UserEditRequest userEditRequest) {
 
         User user = getById(userId);

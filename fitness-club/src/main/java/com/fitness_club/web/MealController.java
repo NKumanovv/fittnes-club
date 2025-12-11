@@ -36,7 +36,7 @@ public class MealController {
     public ModelAndView getMealsPage(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata){
 
         User user = userService.getById(authenticationMetadata.getUserId());
-        List<Meal> meals = user.getMeals();
+        List<Meal> meals = mealService.getAllMealsByUserId(user.getId());
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("meals");

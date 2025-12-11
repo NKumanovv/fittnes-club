@@ -11,6 +11,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -37,18 +38,19 @@ public class MealService {
                 .build();
     }
 
+    @CacheEvict(value = "meals",  allEntries = true)
     public Meal createMeal(User user, CreateMealRequest createMealRequest){
         log.info("Creating new meal [%s] for user [%s]".formatted(createMealRequest.getName(), user.getUsername()));
         return mealRepository.save(initializeMeal(user, createMealRequest));
     }
 
-    @Cacheable(value = "meals", key = "#id")
+    @Cacheable(value = "meals")
     public Meal getById(UUID id){
         return mealRepository.findMealById(id).orElseThrow(() -> new DomainException("Meal with id [%s] does not exist.".formatted(id)));
     }
 
 
-    @CacheEvict(value = "meals", key = "#id")
+    @CacheEvict(value = "meals", allEntries = true)
     public void editMealDetails(UUID mealId, CreateMealRequest createMealRequest) {
 
         Meal meal = getById(mealId);
@@ -80,9 +82,14 @@ public class MealService {
                 .build();
     }
 
-    @CacheEvict(value = "meals", key = "#id")
+    @CacheEvict(value = "meals", allEntries = true)
     public void deleteMeal(UUID id) {
         mealRepository.deleteById(id);
         log.warn("Deleting meal ID %s}]".formatted(id));
+    }
+
+    @Cacheable(value = "meals")
+    public List<Meal> getAllMealsByUserId(UUID id) {
+        return mealRepository.getAllMealsByUser_Id(id);
     }
 }
