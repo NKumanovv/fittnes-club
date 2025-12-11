@@ -59,5 +59,7 @@ public class User {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private List<Workout> workouts = new ArrayList<>();
 
+    @Column(nullable = false)
+    private boolean isActive;
 
 }

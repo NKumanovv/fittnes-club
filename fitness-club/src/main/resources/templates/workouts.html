@@ -27,6 +27,11 @@
                             X
                         </button>
                     </form>
+                    <form th:action="@{/workouts/{id}/complete(id=${workout.id})}" method="POST">
+                        <button type="submit" class="complete-btn" title="Log as Completed">
+                            ✓
+                        </button>
+                    </form>
                 </div>
                 <a class="add-workout" th:href="@{/workouts/new}">+</a>
             </div>

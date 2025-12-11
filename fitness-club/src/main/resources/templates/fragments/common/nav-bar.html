@@ -14,12 +14,9 @@
                 <p>Home</p>
                 <i class="fa-solid fa-house"></i>
             </a>
-            <a th:href="@{/}">Your Profile</a>
-            <a th:href="@{/}">Personal Plans</a>
             <a th:href="@{/workouts}">Workouts Page</a>
             <a th:href="@{/meals}">Meals Page</a>
-            <a th:href="@{/}">Achievements</a>
-            <a th:href="@{/}">Discover Plans</a>
+            <a th:href="@{/}">Discover Workouts</a>
         </section>
 
         <section>
@@ -35,11 +32,11 @@
 <!--            <a th:href="@{/}">FAQ</a>-->
 <!--        </section>-->
 
-<!--        <section th:if="${user.role.name() == 'ADMIN'}">-->
-<!--            <h3>Admin Panel</h3>-->
-<!--            <a th:href="@{/}">Users</a>-->
-<!--            <a th:href="@{/}">User</a>-->
-<!--        </section>-->
+        <section th:if="${user.role.name() == 'ADMIN'}">
+            <h3>Admin Panel</h3>
+            <a th:href="@{/admin/users}">Users</a>
+            <a th:href="@{/}">User</a>
+        </section>
     </nav>
 </th:block>
 

@@ -1,9 +1,11 @@
 package com.fitness_club.web;
 
+import com.fitness_club.client.HistoryClient;
 import com.fitness_club.security.AuthenticationMetadata;
 import com.fitness_club.user.model.User;
 import com.fitness_club.user.service.UserService;
 import com.fitness_club.web.dto.CreateWorkoutRequest;
+import com.fitness_club.web.dto.WorkoutLogRequest;
 import com.fitness_club.web.mapper.DtoMapper;
 import com.fitness_club.workout.model.Workout;
 import com.fitness_club.workout.service.WorkoutService;
@@ -24,11 +26,13 @@ public class WorkoutController {
 
     private final UserService userService;
     private final WorkoutService workoutService;
+    private final HistoryClient historyClient;
 
     @Autowired
-    public WorkoutController(UserService userService, WorkoutService workoutService) {
+    public WorkoutController(UserService userService, WorkoutService workoutService, HistoryClient historyClient) {
         this.userService = userService;
         this.workoutService = workoutService;
+        this.historyClient = historyClient;
     }
 
     @GetMapping
@@ -101,6 +105,22 @@ public class WorkoutController {
     @DeleteMapping("/{id}")
     public ModelAndView deleteWorkout(@PathVariable UUID id) {
         workoutService.deleteWorkout(id);
+        return new ModelAndView("redirect:/workouts");
+    }
+
+    @PostMapping("/{id}/complete")
+    public ModelAndView completeWorkout(@PathVariable UUID id, @AuthenticationPrincipal AuthenticationMetadata metadata) {
+
+        Workout workout = workoutService.getById(id);
+
+        WorkoutLogRequest workoutLogRequest = WorkoutLogRequest.builder()
+                .userId(metadata.getUserId())
+                .workoutName(workout.getName())
+                .duration(workout.getDuration())
+                .build();
+
+        historyClient.logWorkout(workoutLogRequest);
+
         return new ModelAndView("redirect:/workouts");
     }
 }

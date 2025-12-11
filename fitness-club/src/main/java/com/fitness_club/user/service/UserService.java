@@ -48,11 +48,17 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        User user = userRepository.findByUsername(username).orElseThrow(() -> new DomainException("User with this username does not exist."));
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-        return new AuthenticationMetadata(user.getId(), username, user.getPassword(), user.getRole());
+        return new AuthenticationMetadata(
+                user.getId(),
+                user.getUsername(),
+                user.getPassword(),
+                user.getRole(),
+                user.isActive()
+        );
     }
-
 
     @Transactional
     public User register(RegisterRequest registerRequest){
@@ -83,6 +89,7 @@ public class UserService implements UserDetailsService {
                 .gender(registerRequest.getGender())
                 .password(passwordEncoder.encode(registerRequest.getPassword()))
                 .role(UserRole.USER)
+                .isActive(true)
                 .createdOn(LocalDateTime.now())
                 .build();
     }
@@ -92,14 +99,9 @@ public class UserService implements UserDetailsService {
         return userRepository.findById(id).orElseThrow(() -> new DomainException("User with id [%s] does not exist.".formatted(id)));
     }
 
-    //@CacheEvict(value = "users", allEntries = true)
     public void editUserDetails(UUID userId, UserEditRequest userEditRequest) {
 
         User user = getById(userId);
-
-        //if (userEditRequest.getEmail().isBlank()) {
-        //    notificationService.saveNotificationPreference(userId, false, null);
-        //}
 
         user.setFirstName(userEditRequest.getFirstName());
         user.setLastName(userEditRequest.getLastName());
@@ -109,10 +111,20 @@ public class UserService implements UserDetailsService {
         user.setEmail(userEditRequest.getEmail());
         user.setProfilePicture(userEditRequest.getProfilePicture());
 
-        //if (!userEditRequest.getEmail().isBlank()) {
-        //    notificationService.saveNotificationPreference(userId, true, userEditRequest.getEmail());
-        //}
+        userRepository.save(user);
+    }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    public void toggleUserStatus(UUID userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+
+        user.setActive(!user.isActive());
 
         userRepository.save(user);
     }
+
+
 }

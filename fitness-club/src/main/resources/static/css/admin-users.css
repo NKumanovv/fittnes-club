@@ -1,0 +1,59 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+th {
+    background-color: #2BB16A;
+    color: white;
+    font-weight: bold;
+}
+
+tr:hover {
+    background-color: #f9f9f9;
+}
+
+.status-active {
+    color: #2BB16A;
+    font-weight: bold;
+    background: #eafbf0;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+.status-blocked {
+    color: #ff4d4d;
+    font-weight: bold;
+    background: #ffe6e6;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+.btn-block {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-unblock {
+    background-color: #2BB16A;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
