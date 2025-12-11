@@ -10,6 +10,7 @@ import com.fitness_club.web.mapper.DtoMapper;
 import com.fitness_club.workout.model.Workout;
 import com.fitness_club.workout.service.WorkoutService;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Controller
+@Slf4j
 @RequestMapping("/workouts")
 public class WorkoutController {
 
@@ -120,6 +122,7 @@ public class WorkoutController {
                 .build();
 
         historyClient.logWorkout(workoutLogRequest);
+        log.info("User [%s] completed workout ID [%s] - sending to History Service.".formatted(metadata.getUsername(), id));
 
         return new ModelAndView("redirect:/workouts");
     }

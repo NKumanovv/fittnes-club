@@ -5,12 +5,14 @@ import com.fitness_club.meal.model.Meal;
 import com.fitness_club.meal.repository.MealRepository;
 import com.fitness_club.user.model.User;
 import com.fitness_club.web.dto.CreateMealRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class MealService {
 
     private final MealRepository mealRepository;
@@ -34,6 +36,7 @@ public class MealService {
     }
 
     public Meal createMeal(User user, CreateMealRequest createMealRequest){
+        log.info("Creating new meal [%s] for user [%s]".formatted(createMealRequest.getName(), user.getUsername()));
         return mealRepository.save(initializeMeal(user, createMealRequest));
     }
 
@@ -46,10 +49,6 @@ public class MealService {
 
         Meal meal = getById(mealId);
 
-        //if (userEditRequest.getEmail().isBlank()) {
-        //    notificationService.saveNotificationPreference(userId, false, null);
-        //}
-
         meal.setName(createMealRequest.getName());
         meal.setCalories(createMealRequest.getCalories());
         meal.setProtein(createMealRequest.getProtein());
@@ -57,11 +56,8 @@ public class MealService {
         meal.setFats(createMealRequest.getFats());
         meal.setPublic(createMealRequest.isPublic());
 
-        //if (!userEditRequest.getEmail().isBlank()) {
-        //    notificationService.saveNotificationPreference(userId, true, userEditRequest.getEmail());
-        //}
-
         mealRepository.save(meal);
+        log.info("Editing meal ID [%s].".formatted( mealId));
     }
 
     public void createFirstMeal(User user){
@@ -82,5 +78,6 @@ public class MealService {
 
     public void deleteMeal(UUID id) {
         mealRepository.deleteById(id);
+        log.warn("Deleting meal ID %s}]".formatted(id));
     }
 }

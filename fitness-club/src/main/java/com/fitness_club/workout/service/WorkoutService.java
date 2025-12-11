@@ -6,12 +6,14 @@ import com.fitness_club.workout.model.Workout;
 import com.fitness_club.workout.repository.WorkoutRepository;
 import com.fitness_club.user.model.User;
 import com.fitness_club.web.dto.CreateWorkoutRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class WorkoutService {
 
     private final WorkoutRepository workoutRepository;
@@ -32,6 +34,7 @@ public class WorkoutService {
     }
 
     public Workout createWorkout(User user, CreateWorkoutRequest createWorkoutRequest) {
+        log.info("Creating new workout [%s] for user [%s]".formatted(createWorkoutRequest.getName(), user.getUsername()));
         return workoutRepository.save(initializeWorkout(user, createWorkoutRequest));
     }
 
@@ -50,6 +53,7 @@ public class WorkoutService {
         workout.setDuration(createWorkoutRequest.getDuration());
 
         workoutRepository.save(workout);
+        log.info("Editing workout ID [%s]. New Name: [%s]".formatted( workoutId, createWorkoutRequest.getName()));
     }
 
     public void createFirstWorkout(User user) {
@@ -68,5 +72,6 @@ public class WorkoutService {
 
     public void deleteWorkout(UUID id) {
         workoutRepository.deleteById(id);
+        log.info("Deleting history log with ID: [%s]".formatted(id));
     }
 }

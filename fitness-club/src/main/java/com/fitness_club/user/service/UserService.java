@@ -124,6 +124,7 @@ public class UserService implements UserDetailsService {
         user.setActive(!user.isActive());
 
         userRepository.save(user);
+        log.warn("Toggling active status for user ID [%s]".formatted( userId));
     }
 
     public void changeUserRole(UUID userId, UserRole newRole) {
@@ -132,6 +133,7 @@ public class UserService implements UserDetailsService {
         user.setRole(newRole);
 
         userRepository.save(user);
+        log.warn("Changing role for user ID [%s] to [%s]".formatted(userId, newRole));
     }
 
 }
