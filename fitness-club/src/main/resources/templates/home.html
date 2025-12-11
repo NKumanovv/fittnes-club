@@ -40,15 +40,71 @@
             </div>
 
             <div class="content-container">
-                <div class="content">
-                        <a th:href="@{/}"></a>
 
+                <div class="content">
+                    <h3 style="margin-bottom: 1em; color: #333;">Latest Workout</h3>
+
+                    <div th:if="${#lists.isEmpty(user.workouts)}" style="text-align: center;">
+                        <p style="margin-bottom: 10px;">No workouts added yet.</p>
+                        <a class="button" style="font-size: 14px;" th:href="@{/workouts/new}">+ Add Workout</a>
+                    </div>
+
+                    <div th:unless="${#lists.isEmpty(user.workouts)}"
+                         th:with="lastW=${user.workouts[user.workouts.size() - 1]}">
+
+                        <a class="workout" style="margin: 0; width: auto; display: block;"
+                           th:href="@{'/workouts/' + ${lastW.id}}">
+
+                            <h5 th:text="${lastW.name}" style="margin-bottom: 0.5em;"></h5>
+
+                            <div style="font-size: 0.9em;">
+                                <strong>Difficulty:</strong>
+                                <span th:text="${lastW.difficulty}"></span>
+                            </div>
+                            <div style="font-size: 0.9em;">
+                                <strong>Duration:</strong>
+                                <span th:text="${lastW.duration} + ' min'"></span>
+                            </div>
+                        </a>
+
+                        <div style="text-align: center; margin-top: 1em;">
+                            <a th:href="@{/workouts}" style="color: #2BB16A; text-decoration: none; font-weight: bold;">View all workouts &rarr;</a>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="content">
+                    <h3 style="margin-bottom: 1em; color: #333;">Latest Meal</h3>
 
+                    <div th:if="${#lists.isEmpty(user.meals)}" style="text-align: center;">
+                        <p style="margin-bottom: 10px;">No meals added yet.</p>
+                        <a class="button" style="font-size: 14px;" th:href="@{/meals/new}">+ Add Meal</a>
+                    </div>
 
+                    <div th:unless="${#lists.isEmpty(user.meals)}"
+                         th:with="lastM=${user.meals[user.meals.size() - 1]}">
+
+                        <a class="meal" style="margin: 0; width: auto; display: block;"
+                           th:href="@{'/meals/' + ${lastM.id}}">
+
+                            <h5 th:text="${lastM.name}" style="margin-bottom: 0.5em;"></h5>
+
+                            <div style="font-size: 0.9em;">
+                                <strong>Calories:</strong>
+                                <span th:text="${lastM.calories}"></span>
+                            </div>
+                            <div style="font-size: 0.9em;">
+                                <strong>Protein:</strong>
+                                <span th:text="${lastM.protein} + 'g'"></span>
+                            </div>
+                        </a>
+
+                        <div style="text-align: center; margin-top: 1em;">
+                            <a th:href="@{/meals}" style="color: #2BB16A; text-decoration: none; font-weight: bold;">View all meals &rarr;</a>
+                        </div>
+                    </div>
                 </div>
+
             </div>
 
         </main>
