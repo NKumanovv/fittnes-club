@@ -2,15 +2,13 @@ package com.fitness_club.web;
 
 import com.fitness_club.security.AuthenticationMetadata;
 import com.fitness_club.user.model.User;
+import com.fitness_club.user.model.UserRole;
 import com.fitness_club.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.UUID;
@@ -39,6 +37,15 @@ public class AdminController {
     @PostMapping("/users/{id}/toggle-status")
     public ModelAndView toggleUserStatus(@PathVariable UUID id) {
         userService.toggleUserStatus(id);
+        return new ModelAndView("redirect:/admin/users");
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/users/{id}/change-role")
+    public ModelAndView changeUserRole(@PathVariable UUID id, @RequestParam UserRole role) {
+
+        userService.changeUserRole(id, role);
+
         return new ModelAndView("redirect:/admin/users");
     }
 }

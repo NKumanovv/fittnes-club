@@ -126,5 +126,12 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
+    public void changeUserRole(UUID userId, UserRole newRole) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+
+        user.setRole(newRole);
+
+        userRepository.save(user);
+    }
 
 }

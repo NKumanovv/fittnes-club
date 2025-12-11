@@ -31,7 +31,28 @@
                 <tr th:each="u : ${users}">
                     <td th:text="${u.username}">User123</td>
                     <td th:text="${u.email}">user@example.com</td>
-                    <td th:text="${u.role}">USER</td>
+                    <td>
+                    <span th:if="${u.username == currentUsername}"
+                          th:text="${u.role}"
+                          style="font-weight: bold; color: gray;">
+                    </span>
+
+                        <div th:if="${u.username != currentUsername}">
+                            <form th:action="@{/admin/users/{id}/change-role(id=${u.id})}" method="POST">
+
+                                <select name="role" onchange="this.form.submit()"
+                                        style="padding: 5px; border-radius: 5px; border: 1px solid #ccc;">
+
+                                    <option th:each="r : ${T(com.fitness_club.user.model.UserRole).values()}"
+                                            th:value="${r}"
+                                            th:text="${r}"
+                                            th:selected="${r == u.role}">
+                                    </option>
+                                </select>
+
+                            </form>
+                        </div>
+                    </td>
 
                     <td>
                         <span th:if="${u.active}" class="status-active">Active</span>
