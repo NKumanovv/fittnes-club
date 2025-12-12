@@ -1,7 +1,6 @@
 package com.fitness_club.meal.repository;
 
 import com.fitness_club.meal.model.Meal;
-import com.fitness_club.workout.model.Workout;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

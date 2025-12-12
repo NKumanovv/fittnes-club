@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/typography.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Workout History</title>
+</head>
+<body>
+
+<div class="container">
+    <main>
+        <div th:replace="~{fragments/common/nav-bar :: navbar}"></div>
+
+        <div class="content">
+            <h1><i class="fa-solid fa-clock-rotate-left"></i> Your History</h1>
+            <p>A log of all your completed training sessions.</p>
+
+            <div th:if="${logs.isEmpty()}" style="margin-top: 20px; color: gray;">
+                <p>You haven't completed any workouts yet. Go train!</p>
+                <a class="button" href="/workouts">Go to Workouts</a>
+            </div>
+
+            <div class="workout-content-container" style="flex-direction: column;">
+
+                <div class="workout" th:each="log : ${logs}"
+                     style="margin: 10px 0; display: flex; justify-content: space-between; align-items: center;">
+
+                    <div>
+                        <h4 th:text="${log.workoutName}" style="margin-bottom: 5px;">Chest Day</h4>
+                        <span style="font-size: 0.9em; color: gray;">
+                            <i class="fa-regular fa-calendar"></i>
+                            <span th:text="${#temporals.format(log.dateCompleted, 'dd MMM yyyy HH:mm')}">Date</span>
+                        </span>
+                    </div>
+
+                    <div style="background: #eafbf0; padding: 5px 15px; border-radius: 20px; color: #2BB16A; font-weight: bold;">
+                        <span th:text="${log.duration} + ' min'">45 min</span>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </main>
+    <th:block th:insert="~{fragments/common/footer :: footer}"></th:block>
+</div>
+
+</body>
+</html>

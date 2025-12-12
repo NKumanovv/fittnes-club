@@ -4,7 +4,7 @@ import com.fitness_club.security.AuthenticationMetadata;
 import com.fitness_club.user.model.User;
 import com.fitness_club.user.model.UserRole;
 import com.fitness_club.user.service.UserService;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -15,10 +15,14 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/admin")
-@RequiredArgsConstructor
 public class AdminController {
 
     private final UserService userService;
+
+    @Autowired
+    public AdminController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/users")

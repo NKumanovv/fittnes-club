@@ -1,8 +1,7 @@
-package com.fitness_club.CacheScheduler;
+package com.fitness_club.scheduler;
 
 import com.fitness_club.meal.service.MealService;
 import com.fitness_club.workout.service.WorkoutService;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -23,7 +22,7 @@ public class CacheScheduler {
     }
 
 
-    @Scheduled(fixedRate = 1000)
+    @Scheduled(fixedRate = 60000)
     @CacheEvict(value = {"public_workouts", "public_meals"}, allEntries = true)
     public void refreshPublicCaches() {
         log.info("[Scheduler] Warming up public caches...");

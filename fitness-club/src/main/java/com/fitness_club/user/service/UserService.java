@@ -1,7 +1,6 @@
 package com.fitness_club.user.service;
 
 import com.fitness_club.exeption.DomainException;
-import com.fitness_club.meal.model.Meal;
 import com.fitness_club.meal.service.MealService;
 import com.fitness_club.security.AuthenticationMetadata;
 import com.fitness_club.user.model.User;
@@ -9,7 +8,6 @@ import com.fitness_club.user.model.UserRole;
 import com.fitness_club.user.repository.UserRepository;
 import com.fitness_club.web.dto.RegisterRequest;
 import com.fitness_club.web.dto.UserEditRequest;
-import com.fitness_club.workout.repository.WorkoutRepository;
 import com.fitness_club.workout.service.WorkoutService;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
@@ -74,7 +72,7 @@ public class UserService implements UserDetailsService {
         mealService.createFirstMeal(user);
         workoutService.createFirstWorkout(user);
 
-        log.info(String.format("Successfully created new account for user [%s] with id [%s].", user.getUsername(), user.getId()));
+        log.info(String.format("Successfully created new account for user [%s] with id [%s].".formatted( user.getUsername(), user.getId())));
 
         return user;
     }
