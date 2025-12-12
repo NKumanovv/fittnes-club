@@ -6,6 +6,8 @@
     <link rel="stylesheet" type="text/css" href="/css/typography.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/form.css">
+    <link rel="stylesheet" type="text/css" href="/css/sliderMeal.css">
+
     <title>Edit Workout</title>
 </head>
 <body>
@@ -42,6 +44,14 @@
                     </option>
                 </select>
                 <p class="alert-warning" th:if="${#fields.hasErrors('difficulty')}" th:errors="*{difficulty}"></p>
+            </div>
+
+            <div class="form-group">
+                <label class="switch">
+                    <input type="checkbox" th:field="*{public}" />
+                    <span class="slider"></span>
+                </label>
+                <span th:text="${createWorkoutRequest.public} ? 'Enabled' : 'Disabled'"></span>
             </div>
 
             <button type="submit">Save Changes</button>
