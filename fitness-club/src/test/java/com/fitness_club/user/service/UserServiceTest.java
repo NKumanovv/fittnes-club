@@ -94,8 +94,8 @@ class UserServiceTest {
 
         assertNotNull(result);
         verify(userRepository).save(any(User.class));
-        verify(mealService).createFirstMeal(savedUser); // Verify integration
-        verify(workoutService).createFirstWorkout(savedUser); // Verify integration
+        verify(mealService).createFirstMeal(savedUser);
+        verify(workoutService).createFirstWorkout(savedUser);
     }
 
     @Test
