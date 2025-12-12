@@ -26,4 +26,7 @@ public class CreateWorkoutRequest {
 
     @Min(value = 1, message = "Duration must be at least 1 minute")
     private int duration;
+
+    private boolean isPublic;
+
 }

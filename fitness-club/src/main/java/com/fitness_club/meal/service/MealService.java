@@ -92,4 +92,10 @@ public class MealService {
     public List<Meal> getAllMealsByUserId(UUID id) {
         return mealRepository.getAllMealsByUser_Id(id);
     }
+
+    @Cacheable(value = "public_meals")
+    public List<Meal> getAllPublicMeals() {
+        log.info("Fetching all PUBLIC meals from Database...");
+        return mealRepository.findByIsPublicTrue();
+    }
 }

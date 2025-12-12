@@ -33,6 +33,7 @@ public class WorkoutService {
                 .difficulty(createWorkoutRequest.getDifficulty())
                 .duration(createWorkoutRequest.getDuration())
                 .user(user)
+                .isPublic(createWorkoutRequest.isPublic())
                 .build();
     }
 
@@ -56,6 +57,7 @@ public class WorkoutService {
         workout.setDescription(createWorkoutRequest.getDescription());
         workout.setDifficulty(createWorkoutRequest.getDifficulty());
         workout.setDuration(createWorkoutRequest.getDuration());
+        workout.setPublic(createWorkoutRequest.isPublic());
 
         workoutRepository.save(workout);
         log.info("Editing workout ID [%s]. New Name: [%s]".formatted( workoutId, createWorkoutRequest.getName()));
@@ -72,6 +74,7 @@ public class WorkoutService {
                 .difficulty(Difficulty.ADVANCED)
                 .duration(60)
                 .user(user)
+                .isPublic(false)
                 .build();
     }
 
@@ -84,5 +87,11 @@ public class WorkoutService {
     @Cacheable(value = "workouts")
     public List<Workout> getAllWorkoutsById(UUID id) {
         return workoutRepository.getAllWorkoutsByUser_Id(id);
+    }
+
+    @Cacheable(value = "public_workouts")
+    public List<Workout> getAllPublicWorkouts() {
+        log.info("Fetching all PUBLIC workouts from Database...");
+        return workoutRepository.findByIsPublicTrue();
     }
 }

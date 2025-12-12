@@ -12,4 +12,6 @@ import java.util.UUID;
 public interface WorkoutRepository extends JpaRepository<Workout, UUID> {
 
     List<Workout> getAllWorkoutsByUser_Id(UUID id);
+
+    List<Workout> findByIsPublicTrue();
 }

@@ -16,26 +16,17 @@
             </a>
             <a th:href="@{/workouts}">Workouts Page</a>
             <a th:href="@{/meals}">Meals Page</a>
-            <a th:href="@{/}">Discover Workouts</a>
         </section>
 
         <section>
             <h3>Discover</h3>
-            <a th:href="@{/}">Plan store</a>
-            <a th:href="@{/}">Purchase Plans</a>
-        </section>
+            <a th:href="@{/explore}">Explore</a>
 
-<!--        <section>-->
-<!--            <h3>Information Pages</h3>-->
-<!--            <a th:href="@{/}">About us</a>-->
-<!--            <a th:href="@{/}">Contacts</a>-->
-<!--            <a th:href="@{/}">FAQ</a>-->
-<!--        </section>-->
+        </section>
 
         <section th:if="${user.role.name() == 'ADMIN'}">
             <h3>Admin Panel</h3>
             <a th:href="@{/admin/users}">Users</a>
-            <a th:href="@{/}">User</a>
         </section>
     </nav>
 </th:block>

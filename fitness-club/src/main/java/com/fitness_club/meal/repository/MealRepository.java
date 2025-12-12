@@ -16,5 +16,5 @@ public interface MealRepository extends JpaRepository<Meal, UUID> {
 
     List<Meal> getAllMealsByUser_Id(UUID id);
 
-
+    List<Meal> findByIsPublicTrue();
 }

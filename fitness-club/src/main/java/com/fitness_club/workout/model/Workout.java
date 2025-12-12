@@ -31,6 +31,9 @@ public class Workout {
     @Column(nullable = false)
     private int duration;
 
+    @Column(nullable = false)
+    private boolean isPublic;
+
     @ManyToOne
     private User user;
 
