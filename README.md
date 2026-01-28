@@ -103,5 +103,105 @@ public class SecurityConfig {
 microservice for fitness club app https://github.com/NKumanovv/fitness-history-service
 
 
+This updated version of your **Fitness Club** project now leverages **Java 21**, uses **Spring Cloud OpenFeign** for external service communication, and is better prepared for testing with **H2** and specific Surefire configurations.
 
+---
+
+# 🏋️ Fitness Club Management System
+
+A high-performance management platform for modern fitness centers, built with **Spring Boot 3.4** and **Java 21 (LTS)**. This application integrates automated background operations, intelligent data caching, and seamless external service communication.
+
+---
+
+## 🏗️ System Architecture
+
+The application is built on a robust foundation designed for performance and security.
+
+### 🛰️ External Integrations (OpenFeign)
+
+The system is equipped with **Spring Cloud OpenFeign**, allowing it to behave as a microservice-ready application. It can easily consume external REST APIs—such as payment gateways, SMS notification services, or global fitness data providers—using a declarative web client.
+
+### 🔐 Security & Access Control
+
+* **Spring Security 3.4.2:** Provides industry-standard authentication and protection against common exploits (CSRF, XSS).
+* **Role-Based Access Control (RBAC):** Tailored views and permissions for Members, Trainers, and Admin staff.
+* **Data Integrity:** Strict business rule enforcement via **Jakarta Validation**.
+
+### ⚡ Performance & Automation
+
+* **Spring Caching:** Drastically reduces database latency for high-traffic data like workout schedules.
+* **Spring Scheduling:** Handles background tasks like membership renewals and automated email reporting.
+
+---
+
+## 🛠️ Technical Stack
+
+| Component | Technology |
+| --- | --- |
+| **Backend Framework** | Spring Boot 3.4.0 |
+| **Language** | Java 21 |
+| **HTTP Client** | Spring Cloud OpenFeign |
+| **Persistence** | MySQL (Production) / H2 (Testing) |
+| **Security** | Spring Security |
+| **Templating** | Thymeleaf |
+| **Utilities** | Project Lombok |
+
+---
+
+## 🚀 Key Features
+
+* **Member & Subscription Tracking:** Automated status updates and renewal alerts.
+* **Declarative API Clients:** Clean integration with external services via Feign interfaces.
+* **Real-time Monitoring:** Integrated **Spring Boot Actuator** for health checks and performance metrics.
+* **Robust Testing Suite:** Pre-configured with **H2** and `spring-security-test` for high code coverage.
+
+---
+
+## ⚙️ Configuration & Environment
+
+### Prerequisites
+
+* **JDK 21**
+* **Maven 3.9+**
+* **MySQL 8.0+**
+
+### Setup
+
+1. **Clone the project:**
+```bash
+git clone https://github.com/your-username/fitness-club.git
+
+```
+
+
+2. **Configure Properties:** Update `src/main/resources/application.properties` with your database credentials.
+3. **Build:**
+```bash
+mvn clean install
+
+```
+
+
+4. **Run:**
+```bash
+mvn spring-boot:run
+
+```
+
+
+
+---
+
+## 🧪 Testing
+
+The project uses a specialized Maven Surefire configuration to support **Java 21 dynamic agent loading**, ensuring advanced testing tools and mocks work correctly.
+
+To run the full test suite:
+
+```bash
+mvn test
+
+```
+
+Would you like me to create an example **OpenFeign Client** interface for an external service (like a weather API or payment gateway) to include in your project?
 
