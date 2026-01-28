@@ -1,7 +1,10 @@
 # 🏋️ Fitness Club Management System
 
+---
+
 A streamlined management platform for fitness centers, built using **Spring Boot 3.4** and **Java 21**.
 
+---
 
 ## 🛠️ Technical Stack
 
@@ -18,6 +21,7 @@ A streamlined management platform for fitness centers, built using **Spring Boot
 | **Templating** | Thymeleaf |
 | **HTTP Client** | Spring Cloud OpenFeign |
 
+---
 
 ## 🏗️ System Architecture
 
@@ -41,7 +45,6 @@ The application is built on a robust foundation designed for performance and sec
 * **Declarative API Clients:** Clean integration with external services via Feign interfaces.
 * **Real-time Monitoring:** Integrated **Spring Boot Actuator** for health checks and performance metrics.
 * **Robust Testing Suite:** Pre-configured with **H2** and `spring-security-test` for high code coverage.
-
 
 ---
 
