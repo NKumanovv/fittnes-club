@@ -4,7 +4,7 @@
 ---
 
 
-A streamlined management platform for fitness centers, built using **Spring Boot 3.4** and **Java 21**.
+### A streamlined management platform for fitness centers, built using **Spring Boot 3.4** and **Java 21**.
 
 ---
 
