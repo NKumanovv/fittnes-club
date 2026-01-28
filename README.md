@@ -97,5 +97,4 @@ public class SecurityConfig {
 
 ```
 
-Would you like me to help you draft the **Database Schema** section with a list of entity relationships (e.g., Members to Memberships)?
 microservice for fitness club app https://github.com/NKumanovv/fitness-history-service
