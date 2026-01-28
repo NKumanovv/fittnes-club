@@ -24,6 +24,8 @@ The application follows a standard layered architecture (Controller, Service, Re
 | **UI** | Thymeleaf + HTML5/CSS3 |
 | **Monitoring** | Spring Boot Actuator |
 | **Utilities** | Project Lombok (Boilerplate reduction) |
+| **Optimization** | Spring Cache Abstraction |
+| **Automation** | Spring Task Scheduling |
 
 ---
 
@@ -33,6 +35,7 @@ The application follows a standard layered architecture (Controller, Service, Re
 * **Role-Based Access:** Separation of concerns between gym members (viewing schedules) and administrators (managing memberships).
 * **Health Monitoring:** Built-in **Actuator** endpoints to monitor application health and performance metrics.
 * **Automated Validation:** Robust validation rules for all entity models to prevent invalid data entry.
+
 
 ---
 
@@ -98,3 +101,7 @@ public class SecurityConfig {
 ```
 
 microservice for fitness club app https://github.com/NKumanovv/fitness-history-service
+
+
+
+
