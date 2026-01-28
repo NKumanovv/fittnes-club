@@ -19,9 +19,6 @@ A streamlined management platform for fitness centers, built using **Spring Boot
 | **HTTP Client** | Spring Cloud OpenFeign |
 
 
----
-
-
 ## 🏗️ System Architecture
 
 The application is built on a robust foundation designed for performance and security.
