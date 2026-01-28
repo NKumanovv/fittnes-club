@@ -2,25 +2,6 @@
 
 A streamlined management platform for fitness centers, built using **Spring Boot 3.4** and **Java 21**.
 
----
-
-## 🏗️ System Architecture
-
-The application is built on a robust foundation designed for performance and security.
-
-### 🔐 Security & Access Control
-
-* **Spring Security 3.4.2:** Provides industry-standard authentication and protection against common exploits (CSRF, XSS).
-* **Role-Based Access Control (RBAC):** Tailored views and permissions for Members, Trainers, and Admin staff.
-* **Data Integrity:** Strict business rule enforcement via **Jakarta Validation**.
-
-### ⚡ Performance & Automation
-
-* **Spring Caching:** Drastically reduces database latency for high-traffic data like workout schedules.
-* **Spring Scheduling:** Handles background tasks like membership renewals and automated email reporting.
-
-
----
 
 ## 🛠️ Technical Stack
 
@@ -37,6 +18,24 @@ The application is built on a robust foundation designed for performance and sec
 | **Templating** | Thymeleaf |
 | **HTTP Client** | Spring Cloud OpenFeign |
 
+
+---
+
+
+## 🏗️ System Architecture
+
+The application is built on a robust foundation designed for performance and security.
+
+### 🔐 Security & Access Control
+
+* **Spring Security 3.4.2:** Provides industry-standard authentication and protection against common exploits (CSRF, XSS).
+* **Role-Based Access Control (RBAC):** Tailored views and permissions for Members, Trainers, and Admin staff.
+* **Data Integrity:** Strict business rule enforcement via **Jakarta Validation**.
+
+### ⚡ Performance & Automation
+
+* **Spring Caching:** Drastically reduces database latency for high-traffic data like workout schedules.
+* **Spring Scheduling:** Handles background tasks like membership renewals and automated email reporting.
 
 ---
 
