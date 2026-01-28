@@ -1,16 +1,12 @@
 # 🏋️ Fitness Club Management System
 
-A streamlined management platform for fitness centers, built using **Spring Boot 3.4** and **Java 17**. This application facilitates member management, class scheduling, and secure administrative control.
+A streamlined management platform for fitness centers, built using **Spring Boot 3.4** and **Java 21**.
 
 ---
 
 ## 🏗️ System Architecture
 
 The application is built on a robust foundation designed for performance and security.
-
-### 🛰️ External Integrations (OpenFeign)
-
-The system is equipped with **Spring Cloud OpenFeign**, allowing it to behave as a microservice-ready application. It can easily consume external REST APIs—such as payment gateways, SMS notification services, or global fitness data providers—using a declarative web client.
 
 ### 🔐 Security & Access Control
 
@@ -44,12 +40,8 @@ The system is equipped with **Spring Cloud OpenFeign**, allowing it to behave as
 
 ---
 
-
----
-
 ## 🚀 Key Features
 
-* **Member & Subscription Tracking:** Automated status updates and renewal alerts.
 * **Declarative API Clients:** Clean integration with external services via Feign interfaces.
 * **Real-time Monitoring:** Integrated **Spring Boot Actuator** for health checks and performance metrics.
 * **Robust Testing Suite:** Pre-configured with **H2** and `spring-security-test` for high code coverage.
@@ -61,7 +53,7 @@ The system is equipped with **Spring Cloud OpenFeign**, allowing it to behave as
 
 ### Prerequisites
 
-* **JDK 17**
+* **JDK 21**
 * **Maven 3.x**
 * **MySQL Server**
 
@@ -131,6 +123,6 @@ mvn test
 
 ```
 
-microservice for fitness club app https://github.com/NKumanovv/fitness-history-service
+Microservice for fitness club app https://github.com/NKumanovv/fitness-history-service
 
 
